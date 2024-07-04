@@ -4,8 +4,8 @@
   grid-template-columns: 1fr 1fr 1fr;
 }
 
-.buttons-column-wrapper button {
-  display: block;
+.buttons-column-wrapper {
+  display: grid;
   width: 100%;
 }
 .evaluate {
