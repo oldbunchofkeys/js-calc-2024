@@ -14,7 +14,6 @@ function setDisplayInDom() {
   displayEl.textContent = globalData.currentDisplay;
 }
 setDisplayInDom();
-console.log(typeof globalData.currentDisplay);
 
 function typeNumbersToDisplay(value) {
   if (globalData.currentDisplay === 0) {
@@ -22,7 +21,6 @@ function typeNumbersToDisplay(value) {
   } else {
     const globalDataString = globalData.currentDisplay.toString() + value;
     globalData.currentDisplay = parseInt(globalDataString);
-    console.log(typeof globalData.currentDisplay);
   }
   setDisplayInDom();
 }
@@ -66,7 +64,10 @@ function evaluate() {
 // event listeners
 document.querySelectorAll(".number").forEach((button) => {
   button.addEventListener("click", (e) => {
-    if (globalData.activeOperation !== null && globalData.previousDisplay === 0) {
+    if (
+      globalData.activeOperation !== null &&
+      globalData.previousDisplay === 0
+    ) {
       setPreviousDisplay();
       globalData.currentDisplay = 0;
       typeNumbersToDisplay(e.target.textContent);
