@@ -1,0 +1,13 @@
+.buttons-wrapper,
+.numbers-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.buttons-column-wrapper button {
+  display: block;
+  width: 100%;
+}
+.evaluate {
+  grid-column: span 3;
+}
