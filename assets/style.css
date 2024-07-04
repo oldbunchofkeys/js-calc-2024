@@ -1,13 +1,23 @@
 .buttons-wrapper,
 .numbers-container {
   display: grid;
+}
+.buttons-wrapper {
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+.numbers-container {
   grid-template-columns: 1fr 1fr 1fr;
 }
-
 .buttons-column-wrapper {
   display: grid;
   width: 100%;
 }
+.numbers-container {
+  grid-column: span 4;
+}
+.number {
+  min-height: 35px;
+}
 .evaluate {
-  grid-column: span 3;
+  grid-column: span 6;
 }
