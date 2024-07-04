@@ -39,6 +39,10 @@ function clearAllDisplay() {
 function setActiveOperation(operation) {
   globalData.activeOperation = operation;
 }
+function changeCurrentDisplaySignage() {
+  globalData.currentDisplay = globalData.currentDisplay * -1;
+  setDisplayInDom();
+}
 function evaluate() {
   if (globalData.activeOperation === null) {
     globalData.currentDisplay = globalData.currentDisplay;
@@ -102,4 +106,7 @@ document.querySelector("#all-clear").addEventListener("click", () => {
 });
 document.querySelector("#clear").addEventListener("click", () => {
   clearCurrentDisplay();
+});
+document.querySelector("#signage").addEventListener("click", () => {
+  changeCurrentDisplaySignage();
 });
