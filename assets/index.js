@@ -1,4 +1,4 @@
-const globalData = {
+const state = {
   currentDisplay: 0,
   previousDisplay: 0,
   //previousDisplay means the previous COMPUTED display, or the display
@@ -11,72 +11,67 @@ const globalData = {
 const displayEl = document.querySelector("#display");
 
 function setDisplayInDom() {
-  displayEl.textContent = globalData.currentDisplay;
+  displayEl.textContent = state.currentDisplay;
 }
 setDisplayInDom();
 
 function typeNumbersToDisplay(value) {
-  if (globalData.currentDisplay === 0) {
-    globalData.currentDisplay = parseInt(value);
+  if (state.currentDisplay === 0) {
+    state.currentDisplay = parseInt(value);
   } else {
-    const globalDataString = globalData.currentDisplay.toString() + value;
-    globalData.currentDisplay = parseInt(globalDataString);
+    const stateString = state.currentDisplay.toString() + value;
+    state.currentDisplay = parseInt(stateString);
   }
   setDisplayInDom();
 }
 function setPreviousDisplay() {
-  globalData.previousDisplay = globalData.currentDisplay;
+  state.previousDisplay = state.currentDisplay;
 }
 function clearCurrentDisplay() {
-  globalData.currentDisplay = 0;
+  state.currentDisplay = 0;
   setDisplayInDom();
 }
 function clearAllDisplay() {
-  globalData.currentDisplay = 0;
-  globalData.previousDisplay = 0;
+  state.currentDisplay = 0;
+  state.previousDisplay = 0;
   setDisplayInDom();
 }
 function setActiveOperation(operation) {
-  globalData.activeOperation = operation;
+  state.activeOperation = operation;
 }
 function changeCurrentDisplaySignage() {
-  globalData.currentDisplay = globalData.currentDisplay * -1;
+  state.currentDisplay = state.currentDisplay * -1;
   setDisplayInDom();
 }
 function evaluate() {
-  if (globalData.activeOperation === null) {
-    globalData.currentDisplay = globalData.currentDisplay;
+  if (state.activeOperation === null) {
+    state.currentDisplay = state.currentDisplay;
     setDisplayInDom();
-  } else if (globalData.activeOperation === "multiply") {
-    globalData.currentDisplay =
-      globalData.previousDisplay * globalData.currentDisplay;
+  } else if (state.activeOperation === "multiply") {
+    state.currentDisplay = state.previousDisplay * state.currentDisplay;
     setDisplayInDom();
-  } else if (globalData.activeOperation === "divide") {
-    globalData.currentDisplay =
-      globalData.previousDisplay / globalData.currentDisplay;
+  } else if (state.activeOperation === "divide") {
+    state.currentDisplay = state.previousDisplay / state.currentDisplay;
     setDisplayInDom();
-  } else if (globalData.activeOperation === "add") {
-    globalData.currentDisplay =
-      globalData.previousDisplay + globalData.currentDisplay;
+  } else if (state.activeOperation === "add") {
+    state.currentDisplay = state.previousDisplay + state.currentDisplay;
     setDisplayInDom();
   } else {
-    globalData.currentDisplay =
-      globalData.previousDisplay - globalData.currentDisplay;
+    state.currentDisplay = state.previousDisplay - state.currentDisplay;
     setDisplayInDom();
   }
 }
 // event listeners
 document.querySelectorAll(".number").forEach((button) => {
   button.addEventListener("click", (e) => {
-    if (
-      globalData.activeOperation !== null &&
-      globalData.previousDisplay === 0
-    ) {
+    if (state.activeOperation !== null && state.previousDisplay === 0) {
       setPreviousDisplay();
-      globalData.currentDisplay = 0;
+      state.currentDisplay = 0;
       typeNumbersToDisplay(e.target.textContent);
+      console.log("running gate 1");
     } else {
       typeNumbersToDisplay(e.target.textContent);
+      console.log("running gate 2");
     }
   });
 });
@@ -99,7 +94,7 @@ document.querySelectorAll(".operation").forEach((button) => {
 });
 document.querySelector("#evaluate").addEventListener("click", () => {
   evaluate();
-  globalData.activeOperation = null;
+  state.activeOperation = null;
 });
 document.querySelector("#all-clear").addEventListener("click", () => {
   clearAllDisplay();
