@@ -97,3 +97,9 @@ document.querySelector("#evaluate").addEventListener("click", () => {
   evaluate();
   globalData.activeOperation = null;
 });
+document.querySelector("#all-clear").addEventListener("click", () => {
+  clearAllDisplay();
+});
+document.querySelector("#clear").addEventListener("click", () => {
+  clearCurrentDisplay();
+});
